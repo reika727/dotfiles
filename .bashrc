@@ -117,5 +117,5 @@ if ! shopt -oq posix; then
 fi
 
 if [ -x /usr/games/fortune -a -x /usr/games/cowsay ]; then
-        /usr/games/fortune | /usr/games/cowsay
+        /usr/games/fortune | /usr/games/$(shuf --echo --head-count=1 cowsay cowthink) -f $(/usr/games/cowsay -l | tail --lines=+2 | xargs shuf --echo --head-count=1) -$(shuf --echo --head-count=1 b d g p s t w y)
 fi
