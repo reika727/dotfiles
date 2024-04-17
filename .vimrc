@@ -10,5 +10,9 @@ autocmd Filetype c,cpp setlocal tabstop=4
 autocmd Filetype haskell setlocal tabstop=2
 augroup mycmds
     autocmd!
-    autocmd TextYankPost * :call system('/mnt/c/Windows/System32/clip.exe',@")
+    if has("win64")
+            autocmd TextYankPost * :call system('/mnt/c/Windows/System32/clip.exe',@")
+    elseif has("mac")
+            set clipboard=unnamed
+    endif
 augroup END
