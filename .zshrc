@@ -118,3 +118,10 @@ fortune | $(shuf --echo --head-count=1 cowsay cowthink) -f $(cowsay -l | tail --
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 eval "$(rbenv init -)"
+
+case "${OSTYPE}" in
+        darwin*)
+                export ANDROID_HOME='/Users/m140rei.kasuya/Library/Android/sdk'
+                export PATH=${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools:${PATH}
+                ;;
+esac
