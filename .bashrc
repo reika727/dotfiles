@@ -116,6 +116,37 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ -x /usr/games/fortune -a -x /usr/games/cowsay ]; then
-        /usr/games/fortune | /usr/games/$(shuf --echo --head-count=1 cowsay cowthink) -f $(/usr/games/cowsay -l | tail --lines=+2 | xargs shuf --echo --head-count=1) -$(shuf --echo --head-count=1 b d g p s t w y)
+if [ -x /usr/games/fortune ] && [ -x /usr/games/cowsay ]; then
+  function deepl() {
+    ESCAPED=$(echo "$1" | jq --slurp --raw-input)
+
+    DATA=$(
+      jq --null-input \
+         --compact-output \
+         --argjson 'text' "[$ESCAPED]" \
+         --arg 'target_lang' 'JA' \
+         --arg 'split_sentences' 'nonewlines' \
+         '$ARGS.named'
+      )
+
+    TRANSLATED=$(
+      curl --silent \
+           --request 'POST' 'https://api-free.deepl.com/v2/translate' \
+           --header "Authorization: DeepL-Auth-Key $DEEPL_AUTHORIZATION_KEY" \
+           --header 'Content-Type: application/json' \
+           --data "$DATA" \
+      | jq --raw-output '.translations[].text'
+    )
+
+    eval "$2='$TRANSLATED'"
+  }
+
+  FORTUNE=$(/usr/games/fortune)
+
+  deepl "$FORTUNE" TRANSLATED_FORTUNE
+
+  echo -e "$FORTUNE\n\n$TRANSLATED_FORTUNE" \
+  | /usr/games/"$(shuf --echo --head-count=1 cowsay cowthink)" \
+    -f "$(/usr/games/cowsay -l | tail --lines=+2 | xargs shuf --echo --head-count=1)" \
+    -"$(shuf --echo --head-count=1 b d g p s t w y)"
 fi
