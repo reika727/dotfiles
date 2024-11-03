@@ -150,3 +150,5 @@ if [ -x /usr/games/fortune ] && [ -x /usr/games/cowsay ]; then
     -f "$(/usr/games/cowsay -l | tail --lines=+2 | xargs shuf --echo --head-count=1)" \
     -"$(shuf --echo --head-count=1 b d g p s t w y)"
 fi
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
