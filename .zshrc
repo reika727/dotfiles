@@ -122,7 +122,7 @@ eval "$(rbenv init -)"
 case "${OSTYPE}" in
         darwin*)
                 export ANDROID_HOME='/Users/m140rei.kasuya/Library/Android/sdk'
-                export PATH=${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools:${PATH}
+                export PATH=${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/proguard/bin:$PATH
                 ;;
 esac
 
