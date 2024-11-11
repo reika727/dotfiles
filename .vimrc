@@ -8,6 +8,7 @@ highlight MyExtraSpace ctermbg=lightgreen
 match MyExtraSpace /　\|\(\s\|　\)\+$/
 autocmd Filetype c,cpp,objc setlocal tabstop=4
 autocmd Filetype haskell setlocal tabstop=2
+set backspace=indent,eol,start
 augroup mycmds
     autocmd!
     if has("win64")
