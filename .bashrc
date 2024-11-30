@@ -138,7 +138,7 @@ if [ -x /usr/games/fortune ] && [ -x /usr/games/cowsay ]; then
       | jq --raw-output '.translations[].text'
     )
 
-    eval "$2='$TRANSLATED'"
+    eval "$2='${TRANSLATED//\'/\'\\\'\'}'"
   }
 
   FORTUNE=$(/usr/games/fortune)
