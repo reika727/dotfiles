@@ -1,0 +1,101 @@
+{
+    // VSCode Settings
+    "diffEditor.ignoreTrimWhitespace": false,
+
+    "editor.autoClosingBrackets": "never",
+    "editor.minimap.enabled": false,
+    "editor.unicodeHighlight.allowedCharacters": {
+        "．": true,
+        "，": true,
+        "–": true,
+        "’": true
+    },
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "editor.unicodeHighlight.nonBasicASCII": false,
+
+    "explorer.sortOrder": "type",
+
+    //"terminal.integrated.profiles.windows":{
+    //    "PowerShell": {
+    //        "source": "PowerShell",
+    //        "icon": "terminal-powershell"
+    //    }
+    //},
+
+    "workbench.colorTheme": "Ayu Light Bordered",
+
+    "zenMode.showTabs": "none",
+
+    // Language Settings
+    "[latex]": {
+        "editor.detectIndentation": false,
+        "editor.tabSize": 2
+    },
+
+    // Extension Settings
+    /// LaTeX Workshop
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "compile-tex",
+            "tools": [
+                "uplatex",
+                "dvipdfmx"
+            ]
+        },
+        {
+            "name": "compile-tex-with-bibtex",
+            "tools": [
+                "uplatex",
+                "pbibtex",
+                "uplatex",
+                "uplatex",
+                "dvipdfmx"
+            ]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "uplatex",
+            "command": "uplatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "pbibtex",
+            "command": "pbibtex",
+            "args": [
+                "%DOCFILE%.aux"
+            ]
+        },
+        {
+            "name": "dvipdfmx",
+            "command": "dvipdfmx",
+            "args": [
+                "%DOCFILE%.dvi"
+            ]
+        }
+    ],
+    "latex-workshop.view.pdf.viewer": "tab",
+
+    /// background
+    "background.enabled": false,
+    "background.customImages": [
+        "C:/Windows/Web/Wallpaper/Mine/hinako.png"
+    ],
+    "background.style": {
+        "background-position": "100% 100%",
+        "background-size": "30%",
+        "opacity": 0.4,
+    },
+
+    /// Live Preview
+    "livePreview.autoRefreshPreview": "On Changes to Saved Files",
+
+    /// CodeLLDB
+    "lldb.library": "C:\\Users\\reika\\AppData\\Local\\Programs\\Swift\\Toolchains\\5.10.0+Asserts\\usr\\bin\\liblldb.dll",
+    "lldb.launch.expressions": "native"
+}
