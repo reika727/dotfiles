@@ -33,6 +33,16 @@
     },
 
     // Extension Settings
+    /// Live Preview
+    "livePreview.autoRefreshPreview": "On Changes to Saved Files",
+
+    /// GitHub Pull Requests
+    "githubPullRequests.pullBranch": "never",
+
+    /// CodeLLDB
+    "lldb.library": "C:\\Users\\reika\\AppData\\Local\\Programs\\Swift\\Toolchains\\5.10.0+Asserts\\usr\\bin\\liblldb.dll",
+    "lldb.launch.expressions": "native",
+
     /// LaTeX Workshop
     "latex-workshop.latex.recipes": [
         {
@@ -90,15 +100,5 @@
         "background-position": "100% 100%",
         "background-size": "30%",
         "opacity": 0.4
-    },
-
-    /// Live Preview
-    "livePreview.autoRefreshPreview": "On Changes to Saved Files",
-
-    /// GitHub Pull Requests
-    "githubPullRequests.pullBranch": "never",
-
-    /// CodeLLDB
-    "lldb.library": "C:\\Users\\reika\\AppData\\Local\\Programs\\Swift\\Toolchains\\5.10.0+Asserts\\usr\\bin\\liblldb.dll",
-    "lldb.launch.expressions": "native"
+    }
 }
