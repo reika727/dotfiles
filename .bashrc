@@ -151,4 +151,6 @@ if [ -x /usr/games/fortune ] && [ -x /usr/games/cowsay ]; then
     -"$(shuf --echo --head-count=1 b d g p s t w y)"
 fi
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
