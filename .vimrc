@@ -9,6 +9,7 @@ noremap j gj
 noremap k gk
 
 highlight MyExtraSpace ctermbg=lightgreen
+highlight CocFloating ctermbg=DarkGrey
 match MyExtraSpace /　\|\(\s\|　\)\+$/
 
 autocmd Filetype c,cpp,objc setlocal tabstop=4
