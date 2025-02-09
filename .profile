@@ -28,3 +28,5 @@ fi
 
 # Do not create .lesshst
 export LESSHISTFILE=-
+
+[ -f "/home/reika727/.ghcup/env" ] && . "/home/reika727/.ghcup/env" # ghcup-env
