@@ -81,6 +81,9 @@ zplug load
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# Set $LS_COLORS
+eval "$(dircolors)"
+
 # Do not create .lesshst
 export LESSHISTFILE=-
 
@@ -92,6 +95,13 @@ bindkey "^[[1;5D" backward-word
 if [ -f ~/.zsh_aliases ]; then
     . ~/.zsh_aliases
 fi
+
+# zsh custom settings
+zstyle ':completion:*' menu select
+zstyle ':completion:*:default' list-colors ${LS_COLORS}
+setopt hist_ignore_dups
+setopt extended_history
+setopt inc_append_history
 
 # pkg-config settings
 export PKG_CONFIG_PATH=/usr/local/opencv/opencv-4.7.0/lib/pkgconfig/
