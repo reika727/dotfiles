@@ -3,7 +3,7 @@ if [ -f "$HOME/.environment" ]; then
   source "$HOME/.environment"
 fi
 
-# fortune | cowsay | DeepL
+# fortune | DeepL | cowsay
 if [ -x /usr/games/fortune ] && [ -x /usr/games/cowsay ]; then
   function deepl() {
     ESCAPED=$(echo "$1" | jq --slurp --raw-input)
