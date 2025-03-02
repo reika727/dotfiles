@@ -30,14 +30,16 @@ if [ -x /usr/games/fortune ] && [ -x /usr/games/cowsay ]; then
     eval "$2='${TRANSLATED//\'/\'\\\'\'}'"
   }
 
-  FORTUNE=$(/usr/games/fortune)
+  function show-motd() {
+    FORTUNE=$(/usr/games/fortune)
+    deepl "$FORTUNE" TRANSLATED_FORTUNE
+    echo -e "$FORTUNE\n\n$TRANSLATED_FORTUNE" \
+    | /usr/games/"$(shuf --echo --head-count=1 cowsay cowthink)" \
+      -f "$(/usr/games/cowsay -l | tail --lines=+2 | xargs shuf --echo --head-count=1)" \
+      -"$(shuf --echo --head-count=1 b d g p s t w y)"
+  }
 
-  deepl "$FORTUNE" TRANSLATED_FORTUNE
-
-  echo -e "$FORTUNE\n\n$TRANSLATED_FORTUNE" \
-  | /usr/games/"$(shuf --echo --head-count=1 cowsay cowthink)" \
-    -f "$(/usr/games/cowsay -l | tail --lines=+2 | xargs shuf --echo --head-count=1)" \
-    -"$(shuf --echo --head-count=1 b d g p s t w y)"
+  show-motd
 fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
