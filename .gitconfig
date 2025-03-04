@@ -1,8 +1,15 @@
 [core]
         editor = vim
+        quotepath = false
+
 [user]
-	email = reikasuya727@gmail.com
 	name = reika727
+	email = reikasuya727@gmail.com
+
+[diff]
+        wsErrorHighlight = all
+
+# TODO: この意味について調べ直す
 [url "github:"]
 	InsteadOf = https://github.com/
         InsteadOf = git@github.com:
