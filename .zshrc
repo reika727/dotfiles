@@ -23,12 +23,15 @@ if [ -x /usr/games/fortune ] && [ -x /usr/games/cowsay ]; then
     | jq --raw-output '.translations[].text'
   }
 
-  function show-motd() {
-    FORTUNE=$(/usr/games/fortune)
-    echo -e "$FORTUNE\n\n$(deepl "$FORTUNE")" \
-    | /usr/games/"$(shuf --echo --head-count=1 cowsay cowthink)" \
+  function cowrandom() {
+    /usr/games/"$(shuf --echo --head-count=1 cowsay cowthink)" \
       -f "$(/usr/games/cowsay -l | tail --lines=+2 | xargs shuf --echo --head-count=1)" \
       -"$(shuf --echo --head-count=1 b d g p s t w y)"
+  }
+
+  function show-motd() {
+    FORTUNE=$(/usr/games/fortune)
+    echo -e "$FORTUNE\n\n$(deepl "$FORTUNE")" | cowrandom
   }
 
   show-motd
