@@ -17,23 +17,18 @@ if [ -x /usr/games/fortune ] && [ -x /usr/games/cowsay ]; then
          '$ARGS.named'
       )
 
-    TRANSLATED=$(
-      curl --silent \
-           --variable '%DEEPL_AUTHORIZATION_KEY' \
-           --request 'POST' 'https://api-free.deepl.com/v2/translate' \
-           --expand-header 'Authorization: DeepL-Auth-Key {{DEEPL_AUTHORIZATION_KEY}}' \
-           --header 'Content-Type: application/json' \
-           --data "$DATA" \
-      | jq --raw-output '.translations[].text'
-    )
-
-    eval "$2='${TRANSLATED//'/'\''}'"
+    curl --silent \
+         --variable '%DEEPL_AUTHORIZATION_KEY' \
+         --request 'POST' 'https://api-free.deepl.com/v2/translate' \
+         --expand-header 'Authorization: DeepL-Auth-Key {{DEEPL_AUTHORIZATION_KEY}}' \
+         --header 'Content-Type: application/json' \
+         --data "$DATA" \
+    | jq --raw-output '.translations[].text'
   }
 
   function show-motd() {
     FORTUNE=$(/usr/games/fortune)
-    deepl "$FORTUNE" TRANSLATED_FORTUNE
-    echo -e "$FORTUNE\n\n$TRANSLATED_FORTUNE" \
+    echo -e "$FORTUNE\n\n$(deepl "$FORTUNE")" \
     | /usr/games/"$(shuf --echo --head-count=1 cowsay cowthink)" \
       -f "$(/usr/games/cowsay -l | tail --lines=+2 | xargs shuf --echo --head-count=1)" \
       -"$(shuf --echo --head-count=1 b d g p s t w y)"
