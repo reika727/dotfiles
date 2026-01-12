@@ -8,21 +8,18 @@ if [ -x /usr/games/fortune ] && [ -x /usr/games/cowsay ]; then
   function deepl() {
     ESCAPED=$(echo "$1" | jq --slurp --raw-input)
 
-    DATA=$(
-      jq --null-input \
-         --compact-output \
-         --argjson 'text' "[$ESCAPED]" \
-         --arg 'target_lang' 'JA' \
-         --arg 'split_sentences' 'nonewlines' \
-         '$ARGS.named'
-      )
-
-    curl --silent \
-         --variable '%DEEPL_AUTHORIZATION_KEY' \
-         --request 'POST' 'https://api-free.deepl.com/v2/translate' \
-         --expand-header 'Authorization: DeepL-Auth-Key {{DEEPL_AUTHORIZATION_KEY}}' \
-         --header 'Content-Type: application/json' \
-         --data "$DATA" \
+    jq --null-input \
+       --compact-output \
+       --argjson 'text' "[$ESCAPED]" \
+       --arg 'target_lang' 'JA' \
+       --arg 'split_sentences' 'nonewlines' \
+       '$ARGS.named' \
+    | curl --silent \
+           --variable '%DEEPL_AUTHORIZATION_KEY' \
+           --request 'POST' 'https://api-free.deepl.com/v2/translate' \
+           --expand-header 'Authorization: DeepL-Auth-Key {{DEEPL_AUTHORIZATION_KEY}}' \
+           --header 'Content-Type: application/json' \
+           --data @- \
     | jq --raw-output '.translations[].text'
   }
 
