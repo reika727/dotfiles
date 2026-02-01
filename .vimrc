@@ -4,6 +4,7 @@ filetype plugin indent on
 set expandtab
 set shiftwidth=0
 set backspace=indent,eol,start
+set nofixendofline
 
 noremap j gj
 noremap k gk
