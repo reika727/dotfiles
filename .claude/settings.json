@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "1",
+    "OTEL_METRICS_EXPORTER": "otlp"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(xcodebuild *)",
+      "Bash(swift build *)",
+      "Bash(swift test *)",
+      "Bash(xcodebuild test *)",
+      "Bash(./Pods/SwiftFormat/CommandLineTool/swiftformat *)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Read(~/.zshrc)",
+      "Read(~/.gitconfig)",
+      "Read(./Package.swift)"
+    ],
+    "deny": [
+      "Bash(sudo *)",
+      "Bash(curl *)",
+      "Bash(wget *)",
+      "Bash(ssh *)",
+      "Bash(nc *)",
+      "Bash(git tag *)",
+      "Bash(git push *)",
+      "Bash(security *)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Read(**/*.p12)",
+      "Read(**/*.mobileprovision)",
+      "Read(~/Library/MobileDevice/**)"
+    ]
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "osascript -e 'display notification \"Claude Code needs your attention\" with title \"Claude Code\"'"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "swift-lsp@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true
+  },
+  "language": "japanese",
+  "disableBypassPermissionsMode": "disable"
+}
